@@ -7,6 +7,7 @@ module.exports = {
     'no-trailing-commas':0,
     'react-native/no-inline-styles': 0,
     'quotes': 0,
-    'jsx-quotes':0,
+    'jsx-quotes': 0,
+    '@typescript-eslint/no-unused-vars':0,
   },
 };
