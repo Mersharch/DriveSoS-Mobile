@@ -10,8 +10,8 @@ const MainNavigator = () => {
     <NavigationContainer>
       <SafeAreaProv>
         <StatusBar barStyle={'default'} />
-        <AuthStack />
-        {/* <HomeView/> */}
+        {/* <AuthStack /> */}
+        <HomeView/>
 
       </SafeAreaProv>
     </NavigationContainer>
