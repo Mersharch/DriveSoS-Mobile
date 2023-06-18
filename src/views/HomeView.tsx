@@ -19,7 +19,7 @@ const HomeView = () => {
             </View>
 
             <View className='w-full'>
-            <Text className="font-sans font-bold text-2xl pl-2">Top Providers</Text>
+            <Text className="font-sans font-bold text-2xl pl-2">Top Service Providers</Text>
               <ScrollView className='flex-1' horizontal showsHorizontalScrollIndicator={false} >
                 {services.map(item => <ServiceCard key={item.id} item={item}/>)}
               </ScrollView>
