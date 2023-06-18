@@ -8,6 +8,8 @@ interface Props {
   keyBoardType?: string;
   onChangeText?: (text: string) => void;
   password?: boolean;
+  amount?: boolean;
+  fuel?: boolean;
 }
 
 const Input: React.FC<Props> = ({
@@ -16,6 +18,8 @@ const Input: React.FC<Props> = ({
   keyBoardType,
   onChangeText,
   password,
+  amount,
+  fuel,
 }) => {
   const [hideText, setHideText] = useState<boolean>(true);
 
@@ -26,7 +30,7 @@ const Input: React.FC<Props> = ({
       <Icon name={iconName} size={25} color="black" />
       <TextInput
         placeholder={placeholder}
-        className=" placeholder:text-xl text-xl ml-3 font-sans w-[75%]"
+        className={` placeholder:text-xl text-xl  font-sans ${ amount || fuel ? "w-14 mr-1" : "w-[75%] ml-3"}`}
         placeholderTextColor={'#8E8E93'}
         keyboardType={keyBoardType}
         secureTextEntry={password ? hideText : false}
@@ -40,6 +44,8 @@ const Input: React.FC<Props> = ({
           <Text>{hideText ? 'Show' : 'Hide'}</Text>
         </TouchableOpacity>
       )}
+      {amount && <Text className='text-[#8E8E93] font-sans font-semibold text-xl'>/hr</Text>}
+      {fuel && <Text className='text-[#8E8E93] font-sans font-semibold text-xl'>/L</Text>}
     </View>
   );
 };

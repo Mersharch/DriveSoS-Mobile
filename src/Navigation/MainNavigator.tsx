@@ -4,6 +4,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import AuthStack from './AuthStack';
 import SafeAreaProv from '../components/SafeAreaProv';
 import HomeView from '../views/HomeView';
+import AutoService from '../views/ServiceViews/AutoService';
+import TowService from '../views/ServiceViews/TowService';
+import FuelService from '../views/ServiceViews/FuelService';
 
 const MainNavigator = () => {
   return (
@@ -11,7 +14,8 @@ const MainNavigator = () => {
       <SafeAreaProv>
         <StatusBar barStyle={'default'} />
         {/* <AuthStack /> */}
-        <HomeView/>
+        {/* <HomeView/> */}
+        <TowService />
 
       </SafeAreaProv>
     </NavigationContainer>
