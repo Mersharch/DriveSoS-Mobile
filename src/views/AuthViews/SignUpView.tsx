@@ -1,5 +1,5 @@
 import {View, Text, ScrollView, Pressable, Alert, KeyboardAvoidingView, Modal, Image, Platform} from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import FullScreenLoader from '../../components/ui/FullScreenLoader';
 import Input from '../../components/ui/Input';
 import Buttonn from '../../components/ui/Buttonn';
@@ -8,9 +8,10 @@ import OTPInputView from '@twotalltotems/react-native-otp-input';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { AuthParamlist } from '../../Navigation/NavTypes';
+import { AuthContext, AuthContextProps } from '../../context/AuthContext';
 
 
-const SignUpView = () => {
+const SignUpView =  () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [first, setFirst] = useState<string>('');
   const [last, setLast] = useState<string>('');
@@ -22,12 +23,13 @@ const SignUpView = () => {
   const [code, setCode] = useState<string>('');
 
   const { navigate } = useNavigation<NavigationProp<AuthParamlist>>();
+  const {register} = useContext<AuthContextProps>(AuthContext);
 
 
 
-  const validate = () => {
+  const validate = async () => {
     setLoading(true);
-    setTimeout(() => {
+    setTimeout(async() => {
       const message =
         !email || !password || !first || !last || !cpassword || !phone
           ? 'fill all fields'
@@ -41,10 +43,18 @@ const SignUpView = () => {
           ? 'passwords do not match'
           : 'success';
       setLoading(false);
+      if (message === 'success') {
+        const res = await register({
+          name: `${first} ${last}`,
+          email,
+          password,
+          phone: `0${phone}`,
+        });
+      }
       Logger.log(`${first} ${last} ${email} 0${phone} ${password} ${cpassword}`);
       
       // 
-      message === 'success' ? setShowModal(true) : Alert.alert(message);
+      // message === 'success' ? setShowModal(true) : Alert.alert(message);
     }, 1500);
   };
 

@@ -6,6 +6,7 @@ import { AuthParamlist } from './NavTypes';
 import LoginView from '../views/AuthViews/LoginView';
 import SignUpView from '../views/AuthViews/SignUpView';
 import ForgotPassword from '../views/AuthViews/ForgotPassword';
+import HomeView from '../views/HomeView';
 
 const AuthStack = () => {
 
@@ -20,6 +21,7 @@ const AuthStack = () => {
       <AuStack.Screen name='Login' component={LoginView} />
       <AuStack.Screen name='SignUp' component={SignUpView} />
       <AuStack.Screen name='Forgot' component={ForgotPassword} />
+      <AuStack.Screen name='Home' component={HomeView} />
     </AuStack.Navigator>
   );
 };

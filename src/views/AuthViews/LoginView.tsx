@@ -27,7 +27,11 @@ const LoginView = () => {
           ? 'minimum password length should be 8 characters'
           : 'success';
       setLoading(false);
-      Alert.alert(message);
+      if (message !== 'success') {
+        
+        return Alert.alert(message);
+      }
+      navigate('Home');
       
     }, 1500);
   };

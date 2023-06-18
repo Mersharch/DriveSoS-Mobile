@@ -10,6 +10,7 @@ import MainNavigator from './src/Navigation/MainNavigator';
 import LoginView from './src/views/AuthViews/LoginView';
 import SignUpView from './src/views/AuthViews/SignUpView';
 import ForgotPassword from './src/views/AuthViews/ForgotPassword';
+import { AuthProvider } from './src/context/AuthContext';
 
 function App(): JSX.Element {
   useEffect(() => {
@@ -20,7 +21,9 @@ function App(): JSX.Element {
 
   return (
     <>
-    <MainNavigator />
+      <AuthProvider>
+      <MainNavigator />
+      </AuthProvider>
     </>
   );
 }

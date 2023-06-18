@@ -131,7 +131,7 @@ const ForgotPassword: React.FC = () => {
                 </Text>
               </Pressable>
               <View className="px-5 mt-20">
-                <Buttonn title="Verify Otp" />
+                <Buttonn title="Verify Otp" onPress={() => Alert.alert(code)} />
               </View>
             </View>
           </Modal>
