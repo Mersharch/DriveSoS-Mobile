@@ -29,13 +29,13 @@ const Hero = () => {
     },[heroData.length]);
   return (
     <Pressable
-      className="w-[95%] flex-row bg-primary-blue h-32 rounded-2xl ease-in-out"
+      className="w-[96%] flex-row bg-primary-blue h-32 rounded-2xl ease-in-out px-1 items-center"
       onPress={heroData[num].onclick}>
       <Image
         source={heroData[num].img}
-        className="w-40 h-24 top-7 right-4"
+        className="w-32 h-20 top-2"
       />
-      <View className="flex-1 pt-4 flex-col gap-2">
+      <View className="flex-1 flex-col gap-2 ml-5">
         <Text className="font-sans font-medium text-primary-white text-lg">
           {heroData[num].title}
         </Text>
