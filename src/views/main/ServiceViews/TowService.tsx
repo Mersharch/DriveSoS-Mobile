@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Input from '../../components/ui/Input';
-import Buttonn from '../../components/ui/Buttonn';
+import Input from '../../../components/ui/Input';
+import Buttonn from '../../../components/ui/Buttonn';
 import SelectDropdown from 'react-native-select-dropdown';
 
 const TowService = () => {
@@ -82,16 +82,16 @@ const TowService = () => {
                 borderColor: '#eee',
                 borderRadius: 16,
                 height: 64,
-                          }}
-                          buttonTextStyle={{color:"#8E8E93"}}
+              }}
+              buttonTextStyle={{color: '#8E8E93'}}
             />
           </View>
           <View className="w-1/3">
             <Input
               placeholder="10"
               iconName="logo-usd"
-                          keyBoardType="numeric"
-                          amount={true}
+              keyBoardType="numeric"
+              amount={true}
             />
           </View>
         </View>

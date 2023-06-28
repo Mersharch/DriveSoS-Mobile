@@ -8,11 +8,11 @@ import {
 } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Input from '../../components/ui/Input';
-import Buttonn from '../../components/ui/Buttonn';
+import Input from '../../../components/ui/Input';
+import Buttonn from '../../../components/ui/Buttonn';
 import SelectDropdown from 'react-native-select-dropdown';
 
-const FuelService = () => {
+const AutoService = () => {
   const countries = [
     {
       value: 'cairo',
@@ -41,11 +41,11 @@ const FuelService = () => {
 
       <View className="flex-col items-center">
         <Image
-          source={require('../../../assets/images/fuel.jpg')}
+          source={require('../../../assets/images/mec.jpg')}
           className="w-full h-48 rounded-2xl"
         />
         <Text className="py-2 px-10 bg-primary-blue text-primary-white font-sans font-semibold text-lg rounded-lg bottom-5">
-          Fuel Service
+          Auto Repairs
         </Text>
       </View>
 
@@ -75,23 +75,23 @@ const FuelService = () => {
                 // if data array is an array of objects then return item.property to represent item in dropdown
                 return item.text;
               }}
-              defaultButtonText="Fuel Type"
+              defaultButtonText="Select a Service"
               buttonStyle={{
                 backgroundColor: '#f5ffff',
                 borderWidth: 3,
                 borderColor: '#eee',
                 borderRadius: 16,
                 height: 64,
-                          }}
-                          buttonTextStyle={{color:"#8E8E93"}}
+              }}
+              buttonTextStyle={{color: '#8E8E93'}}
             />
           </View>
           <View className="w-1/3">
             <Input
               placeholder="10"
               iconName="logo-usd"
-                          keyBoardType="numeric"
-                          fuel={true}
+              keyBoardType="numeric"
+              amount={true}
             />
           </View>
         </View>
@@ -122,4 +122,4 @@ const FuelService = () => {
   );
 };
 
-export default FuelService;
+export default AutoService;
