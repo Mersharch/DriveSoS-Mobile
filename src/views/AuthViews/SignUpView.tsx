@@ -29,7 +29,6 @@ const SignUpView =  () => {
 
   const validate = async () => {
     setLoading(true);
-    setTimeout(async() => {
       const message =
         !email || !password || !first || !last || !cpassword || !phone
           ? 'fill all fields'
@@ -41,21 +40,27 @@ const SignUpView =  () => {
           ? 'minimum password length should be 8 characters'
           : password !== cpassword
           ? 'passwords do not match'
-          : 'success';
-      setLoading(false);
-      if (message === 'success') {
-        const res = await register({
-          name: `${first} ${last}`,
-          email,
-          password,
-          phone: `0${phone}`,
-        });
-      }
-      Logger.log(`${first} ${last} ${email} 0${phone} ${password} ${cpassword}`);
+                : 'success';
       
-      // 
-      // message === 'success' ? setShowModal(true) : Alert.alert(message);
-    }, 1500);
+      if (message !== "success") {
+        setLoading(false);
+        return Alert.alert(message);
+      }
+      
+      const res = await register({
+        name: `${first} ${last}`,
+        email,
+        password,
+        phone: `0${phone}`,
+      });
+      if (!res.success) {
+        setLoading(false);
+        return Alert.alert(res.error);
+      }
+      setLoading(false);
+      // Alert.alert(res.msg);
+    navigate('Login', {msg:"Account Created Successfully, Kindly Login"});
+      
   };
 
   return (
@@ -173,6 +178,8 @@ const SignUpView =  () => {
             </Pressable>
           </View>
         </ScrollView>
+
+
         {/* otpModal */}
       
           <Modal

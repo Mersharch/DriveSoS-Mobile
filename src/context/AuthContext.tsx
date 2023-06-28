@@ -10,19 +10,21 @@ export interface UserProps {
     id?: string,
     email: string,
     password: string,
-    phone: string,
-    name: string,
+    phone?: string,
+    name?: string,
     role?: string,
 }
 
 export interface AuthContextProps {
     user: UserProps | null
-    register: ((data:UserProps) => Promise<void>)
+    register: ((data:UserProps) => Promise<any>)
+    login: ((data:UserProps) => Promise<any>)
 }
 
 export const AuthContext = createContext<AuthContextProps>({
-    user: null
-    , register: async (data:UserProps) => {},
+    user: null,
+    register: async (data: UserProps) => { },
+    login: async (data: UserProps) => { },
 });
 
 export const AuthProvider: React.FC<fixChildrenError> = ({ children }) => {
@@ -36,12 +38,45 @@ export const AuthProvider: React.FC<fixChildrenError> = ({ children }) => {
 
     const register = async (data:UserProps) => {
         // register user
-        const res = await Aservice.register(data);
-        // const response = await 
+        try {
+            const res = await Aservice.register(data);
+            if (!res.success) {
+                throw new Error(res.error);
+            }
+        return {
+            success: true,
+            msg: "User Registered",
+        };
+        } catch (error:any) {
+            return {
+                error:error.message,
+            };
+        }
+        
+
+    };
+
+    const login = async (data:UserProps) => {
+        // login user
+        try {
+            const res = await Aservice.login(data);
+            if (!res.success) {
+                throw new Error(res.error);
+            }
+        return {
+            success: true,
+            msg: "Login Successful",
+        };
+        } catch (error:any) {
+            return {
+                error:error.message,
+            };
+        }
+        
 
     };
     return (
-        <AuthContext.Provider value={{user, register}}>
+        <AuthContext.Provider value={{user, register, login}}>
             {children}
         </AuthContext.Provider>
     );
