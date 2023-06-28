@@ -7,6 +7,8 @@ interface RegisterResponse {
   success: boolean;
   user: UserProps;
   token: string;
+  message?: string;
+  error?: any;
 }
 
 const register = async (data: UserProps) => {
@@ -15,19 +17,50 @@ const register = async (data: UserProps) => {
       method: 'POST',
       url: `${API}/user`,
       data: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
-      
-      Logger.info(`res  ${res}`);
 
-    // if (!res.success) {
-    //   throw new Error("Error Registering User");
-    // }
-  } catch (error) {
-    Logger.error(`Service error  ${error}`);
+    if (!res.data.success) {
+      throw new Error(res.data.message);
+    }
+    Logger.info(`res  ${JSON.stringify(res.data)}`);
+    return res.data;
+  } catch (error: any) {
+    Logger.error(`Service error  ${error.message}`);
+    return {
+      error: error.message,
+    };
   }
 };
 
 
+const login = async (data: UserProps) => {
+  try {
+    const res = await axios<RegisterResponse>({
+      method: 'POST',
+      url: `${API}/user/auth`,
+      data: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!res.data.success) {
+      throw new Error(res.data.message);
+    }
+    Logger.info(`res  ${JSON.stringify(res.data)}`);
+    return res.data;
+  } catch (error: any) {
+    Logger.error(`Service error  ${error.message}`);
+    return {
+      error: error.message,
+    };
+  }
+};
+
 export default {
-    register,
+  register,
+  login,
 };

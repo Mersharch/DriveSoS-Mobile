@@ -1,21 +1,28 @@
 import {View, Text, Image, Pressable, Alert} from 'react-native';
-import React, {useState} from 'react';
+import React, {FC, useEffect, useState, useContext} from 'react';
 import FullScreenLoader from '../../components/ui/FullScreenLoader';
 import Input from '../../components/ui/Input';
 import Buttonn from '../../components/ui/Buttonn';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { AuthParamlist } from '../../Navigation/NavTypes';
+import { AuthContext, AuthContextProps } from '../../context/AuthContext';
 
-const LoginView = () => {
+interface LoginProps {
+  route:any
+}
+
+const LoginView: FC<LoginProps> = ({route}) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   
+  const {login} = useContext<AuthContextProps>(AuthContext);
   const { navigate } = useNavigation<NavigationProp<AuthParamlist>>();
+  const msg = route.params?.msg;
+  
 
-  const validate = () => {
+  const validate = async () => {
     setLoading(true);
-    setTimeout(() => {
       const message =
         !email || !password
           ? 'fill all fields'
@@ -26,15 +33,32 @@ const LoginView = () => {
           : password.length < 8
           ? 'minimum password length should be 8 characters'
           : 'success';
+    if (message !== 'success') {
       setLoading(false);
-      if (message !== 'success') {
-        
         return Alert.alert(message);
-      }
-      navigate('Home');
+    }
+    const res = await login({
+      email,
+      password,
+    });
+    if (!res.success) {
+      setLoading(false);
+      return Alert.alert(res.error);
+    }
+    setLoading(false);
+    setEmail('');
+    setPassword('');
+  navigate('App', {screen:'Home'});
+    
+};
       
-    }, 1500);
-  };
+
+  useEffect(() => {
+    if (msg) {
+      Alert.alert(msg);
+    }
+  }, [msg]);
+  
   return (
     <>
       {loading && <FullScreenLoader />}
@@ -63,7 +87,6 @@ const LoginView = () => {
                   setEmail(v.trim());
                 }}
               />
-              <Text className="font-sans mt-1">!Error</Text>
             </View>
             <View className="w-full mt-5">
               <Input
@@ -74,7 +97,6 @@ const LoginView = () => {
                   setPassword(v.trim());
                 }}
               />
-              <Text className="font-sans mt-1">!Error</Text>
             </View>
           </View>
           <Pressable
