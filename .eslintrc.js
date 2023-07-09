@@ -8,6 +8,7 @@ module.exports = {
     'react-native/no-inline-styles': 0,
     'quotes': 0,
     'jsx-quotes': 0,
-    '@typescript-eslint/no-unused-vars':0,
+    '@typescript-eslint/no-unused-vars': 0,
+    'react/react-in-jsx-scope':0,
   },
 };

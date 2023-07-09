@@ -29,7 +29,7 @@ const Hero = () => {
     },[heroData.length]);
   return (
     <Pressable
-      className="w-[96%] flex-row bg-primary-blue h-32 rounded-2xl ease-in-out px-1 items-center"
+      className="w-[98%] flex-row bg-primary-blue h-32 rounded-2xl ease-in-out px-1 items-center"
       onPress={heroData[num].onclick}>
       <Image
         source={heroData[num].img}

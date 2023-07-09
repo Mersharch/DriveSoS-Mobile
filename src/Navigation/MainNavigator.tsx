@@ -6,6 +6,8 @@ import SafeAreaProv from '../components/SafeAreaProv';
 import HomeView from '../views/main/HomeView';
 import AppStack from './AppStack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Tabs from './Tabs';
+import MapVieww from '../views/main/MapView';
 
 const MainNavigator = () => {
   const MainStack = createNativeStackNavigator();
@@ -21,7 +23,8 @@ const MainNavigator = () => {
         >
 
           <MainStack.Screen name='Auth' component={AuthStack} />
-          <MainStack.Screen name='App' component={AppStack} />
+          <MainStack.Screen name='Tabs' component={Tabs} />
+          <MainStack.Screen name='Map' component={MapVieww} />
         </MainStack.Navigator>
       </SafeAreaProv>
     </NavigationContainer>
