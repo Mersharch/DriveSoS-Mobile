@@ -3,7 +3,7 @@ import {
   Modal,
   Pressable,
   Text,
-  KeyboardAvoidingView,
+  ScrollView,
   View,
   Platform,
   Alert,
@@ -49,9 +49,12 @@ const ForgotPassword: React.FC = () => {
   return (
     <>
     {loading && <FullScreenLoader />}
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'position' : 'height'}
-      className="flex-1 bg-primary-white">
+      <ScrollView
+        keyboardDismissMode='on-drag'
+        keyboardShouldPersistTaps='never'
+        className="flex-1 bg-primary-white flex flex-col"
+      contentContainerStyle={{justifyContent:'space-between'}}
+      >
               <Pressable className='m-3' onPress={() => goBack()}>
                   <Icon
                       name='chevron-back-outline'
@@ -62,7 +65,7 @@ const ForgotPassword: React.FC = () => {
         <View className="flex-1  flex-col">
           <Image
             source={require('../../../assets/images/Auth-Image.png')}
-            className="w-96 h-72"
+            className="w-80 h-64 self-center"
             resizeMode="contain"
           />
           <View className="flex-col gap-5 px-10 mt-5">
@@ -77,14 +80,10 @@ const ForgotPassword: React.FC = () => {
           <Input
             placeholder='Email Address'
             iconName='mail-outline'
-            onChangeText={v => setEmail(v.trim())}
+            onChangeText={v => setEmail(v.trim().toLowerCase())}
           />
           </View>
-          <Pressable className="self-center mt-2">
-            <Text className="text-primary-blue font-sans text-xl">
-              Resend
-            </Text>
-          </Pressable>
+          
           <View className="px-5 mt-20">
             <Buttonn title="Verify" onPress={() => validate()} />
           </View>
@@ -103,7 +102,12 @@ const ForgotPassword: React.FC = () => {
                 color='#074EEB'
               />
             </Pressable>
-            <View className="flex-1  flex-col justify-center">
+          <ScrollView
+            keyboardDismissMode='on-drag'
+            keyboardShouldPersistTaps='never'
+            className="flex-1  flex-col"
+            contentContainerStyle={{justifyContent:'center'}}
+          >
               <Image
                 source={require('../../../assets/images/Auth-Image.png')}
                 className="w-96 h-72"
@@ -133,9 +137,9 @@ const ForgotPassword: React.FC = () => {
               <View className="px-5 mt-20">
                 <Buttonn title="Verify Otp" onPress={() => Alert.alert(code)} />
               </View>
-            </View>
+            </ScrollView>
           </Modal>
-      </KeyboardAvoidingView>
+      </ScrollView>
       </>
   );
 };

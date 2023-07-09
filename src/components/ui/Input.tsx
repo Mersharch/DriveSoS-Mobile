@@ -30,7 +30,7 @@ const Input: React.FC<Props> = ({
       <Icon name={iconName} size={25} color="black" />
       <TextInput
         placeholder={placeholder}
-        className={` placeholder:text-xl text-xl  font-sans ${ amount || fuel ? "w-14 mr-1" : "w-[75%] ml-3"}`}
+        className={` placeholder:text-xl text-xl  font-sans ${ amount || fuel ? "w-14 mr-1" : password ? "w-[75%] ml-3" : 'ml-3 w-[92%]'}`}
         placeholderTextColor={'#8E8E93'}
         keyboardType={keyBoardType}
         secureTextEntry={password ? hideText : false}

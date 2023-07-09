@@ -5,3 +5,7 @@ export interface AuthParamlist extends ParamListBase {
     SignUp: undefined;
     Forgot: undefined;
 }
+export interface AppParamlist extends ParamListBase {
+    Home: any;
+    Request: {locpermission: boolean} | any;
+}
