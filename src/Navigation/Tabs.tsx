@@ -10,7 +10,7 @@ function Tabs() {
     <Tab.Navigator
       initialRouteName="App"
       screenOptions={{
-        tabBarStyle: { backgroundColor: '#F5FFFF', paddingTop:10 },
+        tabBarStyle: { backgroundColor: '#F5FFFF', paddingTop:5 },
         tabBarActiveTintColor:'#1D3261',
         tabBarInactiveTintColor:'#8E8E93',
         tabBarShowLabel: false,
@@ -23,7 +23,7 @@ function Tabs() {
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size, focused }) => (
-            <MaterialCommunityIcons name={focused ? 'home' : 'home-outline'} color={color} size={35} />
+            <MaterialCommunityIcons name={focused ? 'home' : 'home-outline'} color={color} size={26} />
           ),
         }}
       />

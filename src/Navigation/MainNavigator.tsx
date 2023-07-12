@@ -5,26 +5,26 @@ import AuthStack from './AuthStack';
 import SafeAreaProv from '../components/SafeAreaProv';
 import HomeView from '../views/main/HomeView';
 import AppStack from './AppStack';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Tabs from './Tabs';
 import MapVieww from '../views/main/MapView';
+import AutoService from '../views/main/AutoService';
 
 const MainNavigator = () => {
   const MainStack = createNativeStackNavigator();
   return (
     <NavigationContainer>
       <SafeAreaProv>
-          <StatusBar barStyle={'default'} />
+        <StatusBar barStyle={'default'} />
         <MainStack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-        initialRouteName="Auth"
-        >
-
-          <MainStack.Screen name='Auth' component={AuthStack} />
-          <MainStack.Screen name='Tabs' component={Tabs} />
-          <MainStack.Screen name='Map' component={MapVieww} />
+          screenOptions={{
+            headerShown: false,
+          }}
+          initialRouteName="Auth">
+          <MainStack.Screen name="Auth" component={AuthStack} />
+          <MainStack.Screen name="Tabs" component={Tabs} />
+          <MainStack.Screen name="Map" component={MapVieww} />
+          <MainStack.Screen name="Request" component={AutoService} />
         </MainStack.Navigator>
       </SafeAreaProv>
     </NavigationContainer>

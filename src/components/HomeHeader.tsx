@@ -10,31 +10,31 @@ interface Props {
 }
 const HomeHeader: FC<Props> = ({address}) => {
   return (
-    <View className="flex-col h-max space-y-5 pb-2">
+    <View className=" w-full flex-col h-max space-y-5 pb-2">
       <View className="flex-row w-full justify-between">
         <View className="flex-row gap-2 w-[90%] items-center">
           <Icon name="ios-location-outline" size={25} color={'#000000'} />
-          <Text className="font-bold font-sans text-textGray text-xl">
-            {address || 'Pinpointing your current location...'}
+          <Text className="font-sans font-normal text-black text-lg">
+            {address || 'Current location...'}
           </Text>
         </View>
-        <View className="flex gap-2 w-max items-center justify-center">
+        <View className="flex w-max items-center justify-center">
           <Icon
             name="ios-notifications-outline"
-            size={30}
+            size={25}
             color={'#000000'}
             className="self-center"
           />
         </View>
       </View>
-      <View className="flex-row space-x-1 items-center">
-        <Image
+      <View className="w-full flex-row space-x-1 items-center px-1">
+        {/* <Image
           source={require('../../assets/images/Auth-Image.png')}
           className="w-10 h-10 rounded-full"
-        />
+        /> */}
         <View className="flex-row items-center gap-1">
-          <Text className="font-sans font-bold text-2xl">Welcome,</Text>
-          <Text className="font-sans font-bold text-2xl text-textGray">
+          <Text className="font-sans font-bold text-xl">Welcome,</Text>
+          <Text className="font-sans font-bold text-xl text-black">
             Marsai
           </Text>
         </View>

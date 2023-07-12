@@ -7,5 +7,4 @@ export interface AuthParamlist extends ParamListBase {
 }
 export interface AppParamlist extends ParamListBase {
     Home: any;
-    Request: {locpermission: boolean} | any;
 }

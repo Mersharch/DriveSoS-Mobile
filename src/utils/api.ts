@@ -3,13 +3,14 @@ let environment = "DEV";
 switch (environment) {
   case 'DEV':
     // baseUrl = 'http://localhost:5000/api';
+    // baseUrl = 'http://172.20.10.2:5000/api';
     baseUrl = 'http://10.0.2.2:5000/api';
     break;
   case 'PROD':
     baseUrl = 'https://peoplespay.com.gh/peoplepay';
     break;
   default:
-    baseUrl = 'http://localhost:5000/api';
+    baseUrl = 'http://172.20.10.2:5000/api';
     break;
 }
 
