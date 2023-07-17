@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { AuthContext, AuthContextProps } from "./AuthContext";
+import Logger from "../utils/Logger";
 
 
 interface fixChildrenError {
@@ -22,9 +23,10 @@ export interface RequestProps {
       description: string;
       geometry: Geometry;
     };
-    amount: number;
+    amount?: number;
     serviceType: string;
     vehicle: string;
+    fuelType?: string;
     instructions?: string;
     status?: string;
   }
@@ -54,23 +56,27 @@ export const RequestProvider: React.FC<fixChildrenError> = ({ children }) => {
     amount: 0,
     serviceType: '',
     vehicle: '',
+    fuelType: '',
     instructions: '',
     status: '',
     });
 
-    async function validateRequest(data: RequestProps): Promise<boolean> {
+  async function validateRequest(data: RequestProps): Promise<boolean> {
+    Logger.info(data);
         if (
           typeof data.clientLoc.description !== 'string' ||
           data.clientLoc.description.trim() === '' ||
           !isValidLocation(data.clientLoc.geometry.location) ||
-          typeof data.amount !== 'number' ||
-          data.amount <= 0 ||
+          // typeof data.amount !== 'number' ||
+          // data.amount <= 0 ||
           typeof data.serviceType !== 'string' ||
           data.serviceType.trim() === '' ||
           typeof data.vehicle !== 'string' ||
-          data.vehicle.trim() === '' ||
-          typeof data.instructions !== 'string' ||
-          data.instructions.trim() === ''
+          data.vehicle.trim() === '' 
+          // typeof data.fuelType !== 'string' ||
+          // data.fuelType.trim() === '' ||
+          // typeof data.instructions !== 'string' 
+          // data.instructions.trim() === ''
         ) {
           return false;
         }

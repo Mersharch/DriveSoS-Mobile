@@ -4,8 +4,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {AppParamlist, AuthParamlist} from './NavTypes';
 import HomeView from '../views/main/HomeView';
-import AutoService from '../views/main/AutoService';
-import MapVieww from '../views/main/MapView';
+import AutoService from '../views/main/RequestForm';
+import MapVieww from '../views/Request/MapView';
 
 const AppStack = () => {
   const ApStack = createNativeStackNavigator<AppParamlist>();

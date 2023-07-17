@@ -4,8 +4,8 @@ import API from '../utils/api';
 import axios from 'axios';
 
 interface RegisterResponse {
-  success: boolean;
-  user: UserProps;
+  success?: boolean;
+  user?: UserProps;
   token: string;
   message?: string;
   error?: any;

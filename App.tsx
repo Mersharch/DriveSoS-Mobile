@@ -11,7 +11,7 @@ import LoginView from './src/views/AuthViews/LoginView';
 import SignUpView from './src/views/AuthViews/SignUpView';
 import ForgotPassword from './src/views/AuthViews/ForgotPassword';
 import {AuthProvider} from './src/context/AuthContext';
-import {RequestProvider} from './src/context/RequestContext';
+import { RequestProvider } from './src/context/RequestContext';
 
 function App(): JSX.Element {
   useEffect(() => {

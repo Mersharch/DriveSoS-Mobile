@@ -63,6 +63,7 @@ export const AuthProvider: React.FC<fixChildrenError> = ({ children }) => {
             if (!res.success) {
                 throw new Error(res.error);
             }
+            setUser({...res.user});
         return {
             success: true,
             msg: "Login Successful",

@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_MAPS_APIKEY } from '../../utils/constants';
 import { RequestContext, RequestContextProps } from '../../context/RequestContext';
+import Logger from '../../utils/Logger';
 
 interface Props {
   placeholder: string;
@@ -24,13 +25,15 @@ const GoogleInput: React.FC<Props> = ({
 
   return (
     <View
-      className="w-full z-20 flex-1 bg-primary-white flex-row items-center px-3 rounded-lg py-1"
-      style={{borderWidth:1.5, borderColor:'#eee'}}>
+      className="w-full z-20 h-50 bg-primary-white flex-row items-center px-3 rounded-lg py-1"
+      style={{borderWidth:2, borderColor:'#eee'}}>
       <Icon name={iconName} size={25} color="black" />
       <GooglePlacesAutocomplete
         placeholder={placeholder}
         fetchDetails={true}
-        onPress={(data, details = null) => {
+        listViewDisplayed={false}
+        onFail={(err) => Logger.error(err)}
+        onPress={(data, details) => {
           setRequest((prev:any) => {
             return {
               ...prev,
@@ -42,13 +45,13 @@ const GoogleInput: React.FC<Props> = ({
             };
           });
         // 'details' is provided when fetchDetails = true
-        console.log( details?.geometry.location);
-        console.log('data ===> ', details);
+        // console.log('data ===> ', details);
       }}
       query={{
         key: GOOGLE_MAPS_APIKEY,
         language: 'en',
         }}
+        // keepResultsAfterBlur={true}
         predefinedPlaces={[curLoc]}
         enablePoweredByContainer={false}
         styles={{
@@ -59,7 +62,17 @@ const GoogleInput: React.FC<Props> = ({
             backgroundColor: '#F5FFFF',
           },
           predefinedPlacesDescription: {
-            color: '#1faadb',
+            color: '#5d5d5d',
+          },
+          row: {
+            backgroundColor: '#F5FFFF',
+            padding: 13,
+            flexDirection: 'row',
+            fontSize: 18,
+          },
+          description: {
+            fontSize: 18,
+            color: '#5d5d5d',
           },
         }}
     />

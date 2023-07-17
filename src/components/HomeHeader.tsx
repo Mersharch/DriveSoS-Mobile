@@ -1,20 +1,22 @@
 import {View, Text, Image} from 'react-native';
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Input from './ui/Input';
 import {Alert} from 'react-native';
+import { AuthContext, AuthContextProps } from '../context/AuthContext';
 
 
 interface Props {
   address:string
 }
-const HomeHeader: FC<Props> = ({address}) => {
+const HomeHeader: FC<Props> = ({ address }) => {
+  const { user } = useContext<AuthContextProps>(AuthContext);
   return (
     <View className=" w-full flex-col h-max space-y-5 pb-2">
       <View className="flex-row w-full justify-between">
-        <View className="flex-row gap-2 w-[90%] items-center">
+        <View className="flex-row gap-2 w-[80%] items-center">
           <Icon name="ios-location-outline" size={25} color={'#000000'} />
-          <Text className="font-sans font-normal text-black text-lg">
+          <Text className="font-sans font-normal text-black text-lg" numberOfLines={1} ellipsizeMode='tail'>
             {address || 'Current location...'}
           </Text>
         </View>
@@ -35,16 +37,9 @@ const HomeHeader: FC<Props> = ({address}) => {
         <View className="flex-row items-center gap-1">
           <Text className="font-sans font-bold text-xl">Welcome,</Text>
           <Text className="font-sans font-bold text-xl text-black">
-            Marsai
+            {user?.name?.split(' ')[0]}
           </Text>
         </View>
-      </View>
-      <View className="w-full flex-row items-center px-1">
-        <Input
-          iconName="ios-search-outline"
-          placeholder="Find your needed service"
-          onChangeText={val => Alert.alert(val.trim())}
-        />
       </View>
     </View>
   );

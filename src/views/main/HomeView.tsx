@@ -73,27 +73,19 @@ const HomeView = () => {
           <Hero />
         </View>
         <View className="w-full flex-col space-y-5 pb-1 px-2">
-          <Text className="font-sans font-bold text-black text-xl">Our Services</Text>
+          <Text className="font-sans font-bold text-black text-xl">What can we help you with today?</Text>
           <FlatList
             data={services}
-            horizontal
+            numColumns={2}
+            keyExtractor={(item) => {
+              return item.id;
+            }}
             renderItem={({item}) => {
               return <ServiceCard item={item} currAddress={currAddress} />;
             }}
           />
         </View>
-        <View className="w-full flex-col space-y-5 pb-1 px-2">
-          <Text className="font-sans font-bold text-black text-xl">
-            Top Service Providers
-          </Text>
-          <FlatList
-            data={services}
-            horizontal
-            renderItem={({item}) => {
-              return <ServiceCard item={item} currAddress={currAddress} />;
-            }}
-          />
-        </View>
+        
       </ScrollView>
     </View>
   );
