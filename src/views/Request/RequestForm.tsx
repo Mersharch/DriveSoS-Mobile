@@ -29,7 +29,7 @@ interface ServiceProps {
 const RequestForm = ({route}: ServiceProps) => {
   const [loading, setLoading] = React.useState(false);
   const [page, setPage] = React.useState<number>(1);
-  const {request, setRequest, validateRequest} =
+  const {request, setRequest, validateRequest, createReq} =
     React.useContext<RequestContextProps>(RequestContext);
   const [curLoc, setCurLoc] = React.useState({
     description: '',
@@ -46,24 +46,35 @@ const RequestForm = ({route}: ServiceProps) => {
 
 
   const handleSubmit = async () => {
+    let vhcle = `${vec.color} ${vec.year} ${vec.make}`;
+    Logger.info(vhcle);
     setLoading(true);
-    setRequest((prev) => {
-      return {
-        ...prev,
-        vehicle:`${vec.color} ${vec.year} ${vec.make}`,
-      };
-    });
-    setTimeout(async() => {
-      
+    setTimeout(() => {
+      setRequest((prev) => {
+        return {
+          ...prev,
+          vehicle:vhcle,
+        };
+      });      
+    }, 2000);
       const valid = await validateRequest(request);
       if (!valid) {
         setLoading(false);
         return Alert.alert('Kindly fill all fields with the appropriate info');
-      }
-      setLoading(false);
+    }
+    try {
       Logger.info(request);
+      const res = await createReq();
+      if (!res.success) {
+        throw new Error(res.error);
+      }
       navigate('Map', {request});
-    }, 1500);
+    } catch (error) {
+      Logger.error(error);
+      Alert.alert('Error creating request');
+    }
+
+      
   };
 
   React.useEffect(() => {
@@ -182,7 +193,7 @@ const RequestForm = ({route}: ServiceProps) => {
                 boxStyles={{borderWidth:1.5, borderColor:'#eee'}}
                 dropdownStyles={{ borderWidth: 1.5, borderColor: '#eee' }}
                 dropdownTextStyles={{color:'#8E8E93', fontSize:18}}
-                inputStyles={{color:'#8E8E93', fontSize:18}}
+                inputStyles={{color:'#000000', fontSize:18}}
         data={fuelType} 
         save="value"
     />
@@ -192,7 +203,15 @@ const RequestForm = ({route}: ServiceProps) => {
             <Input
               placeholder='Price'
               keyBoardType='number-pad'
-              iconName='car-sport-outline'
+                iconName='car-sport-outline'
+                onChangeText={(v) => {
+                  setRequest((prev:any) => {
+                    return {
+                      ...prev,
+                      amount:Number(v),
+                    };
+                  });
+                }}
               />
             </View>
           </View>
@@ -218,7 +237,7 @@ const RequestForm = ({route}: ServiceProps) => {
               setRequest((prev:any) => {
                 return {
                   ...prev,
-                  instructions:v,
+                  instruction:v,
                 };
               });
             }}

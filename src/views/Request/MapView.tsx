@@ -111,7 +111,7 @@ const MapVieww: React.FC<Props> = ({ route }) => {
             animationType='fade'
             presentationStyle='fullScreen'
         visible={show}
-        transparent
+        // transparent
       >
         <View className='flex flex-row flex-1 items-center justify-center'>
         <View className=' w-3/4 h-48 bg-primary-gray flex flex-col justify-center items-center rounded-xl space-y-3'>

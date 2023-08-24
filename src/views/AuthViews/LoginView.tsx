@@ -48,7 +48,7 @@ const LoginView: FC<LoginProps> = ({route}) => {
     setLoading(false);
     setEmail('');
     setPassword('');
-  navigate('Tabs', {screen:'App'});
+  navigate('Tabs');
     
 };
       
