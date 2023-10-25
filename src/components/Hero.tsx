@@ -29,24 +29,24 @@ const Hero = () => {
     },[heroData.length]);
   return (
     <Pressable
-      className="w-[98%] flex-row bg-primary-blue h-32 rounded-2xl ease-in-out px-1 items-center"
+      className="w-full flex-row bg-primary-blue h-24 rounded-xl ease-in-out px-1 items-center justify-around"
       onPress={heroData[num].onclick}>
       <Image
         source={heroData[num].img}
-        className="w-32 h-20 top-2"
+        className="w-24 h-10 top-2"
       />
-      <View className="flex-1 flex-col gap-2 ml-5">
-        <Text className="font-sans font-medium text-primary-white text-lg">
+      <View className="flex-col gap-2 ml-5">
+        <Text className="font-sans font-medium text-primary-white text-base">
           {heroData[num].title}
         </Text>
-        <Text className="font-sans font-extrabold text-primary-white text-2xl">
+        <Text className="font-sans font-bold text-primary-white text-xl">
           Drive SoS Gotchu
         </Text>
         <View className="flex-row items-center">
-          <Text className="font-sans text-primary-gray text-lg">
+          <Text className="font-sans text-primary-gray text-base">
             Request Now
           </Text>
-          <Icon name="ios-arrow-forward-outline" color={'#D1D1D6'} size={22} />
+          <Icon name="ios-arrow-forward-outline" color={'#D1D1D6'} size={18} />
         </View>
       </View>
     </Pressable>

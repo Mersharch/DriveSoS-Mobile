@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface drivesos_mobileTests : XCTestCase
+@interface DriveSoSTests : XCTestCase
 
 @end
 
-@implementation drivesos_mobileTests
+@implementation DriveSoSTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {

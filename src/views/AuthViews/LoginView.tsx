@@ -1,4 +1,4 @@
-import {View, Text, Image, Pressable, Alert} from 'react-native';
+import {View, Text, Image, Pressable, Alert, ScrollView} from 'react-native';
 import React, {FC, useEffect, useState, useContext} from 'react';
 import FullScreenLoader from '../../components/ui/FullScreenLoader';
 import Input from '../../components/ui/Input';
@@ -48,7 +48,7 @@ const LoginView: FC<LoginProps> = ({route}) => {
     setLoading(false);
     setEmail('');
     setPassword('');
-  navigate('Tabs', {screen:'App'});
+  navigate('Tabs');
     
 };
       
@@ -62,7 +62,7 @@ const LoginView: FC<LoginProps> = ({route}) => {
   return (
     <>
       {loading && <FullScreenLoader />}
-      <View className="flex-1 bg-primary-white flex-col items-center">
+      <ScrollView keyboardDismissMode='on-drag' keyboardShouldPersistTaps='never' className="flex-1 bg-primary-white flex-col" contentContainerStyle={{alignItems:'center'}}>
         {/* <Text className='text-2xl font-sans'>LoginView</Text> */}
         <Image
           source={require('../../../assets/images/Auth-Image.png')}
@@ -71,7 +71,7 @@ const LoginView: FC<LoginProps> = ({route}) => {
         />
         <View className="w-full items-center flex-col gap-5">
           <View className="w-full flex-col gap-2">
-            <Text className="text-black font-sans font-bold text-4xl">
+            <Text className="text-black font-sans font-bold text-3xl">
               Login
             </Text>
             <Text className="text-textGray font-sans text-base">
@@ -102,25 +102,25 @@ const LoginView: FC<LoginProps> = ({route}) => {
           <Pressable
             className="self-end"
             onPress={() => navigate('Forgot')}>
-            <Text className="text-textGray font-sans text-base">
+            <Text className="text-black font-sans text-base">
               Forgot Password?
             </Text>
           </Pressable>
-          <View className="w-full">
+          <View className="w-full px-2">
             <Buttonn title="Get Started" onPress={() => validate()} />
           </View>
           <View className="w-full flex-row items-center justify-center gap-2">
-            <Text className="text-textGray font-sans text-base">
+            <Text className="text-black font-sans text-base">
               Dont have an account?
             </Text>
             <Pressable onPress={() => navigate('SignUp')}>
-              <Text className="font-bold underline font-sans text-base">
+              <Text className="font-bold underline font-sans text-base text-black">
                 Sign Up
               </Text>
             </Pressable>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 };

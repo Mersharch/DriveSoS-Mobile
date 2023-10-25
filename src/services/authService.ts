@@ -4,8 +4,8 @@ import API from '../utils/api';
 import axios from 'axios';
 
 interface RegisterResponse {
-  success: boolean;
-  user: UserProps;
+  success?: boolean;
+  user?: UserProps;
   token: string;
   message?: string;
   error?: any;
@@ -13,7 +13,7 @@ interface RegisterResponse {
 
 const register = async (data: UserProps) => {
   try {
-    const res = await axios<RegisterResponse>({
+    const res = await axios<any>({
       method: 'POST',
       url: `${API}/user`,
       data: JSON.stringify(data),
@@ -38,7 +38,7 @@ const register = async (data: UserProps) => {
 
 const login = async (data: UserProps) => {
   try {
-    const res = await axios<RegisterResponse>({
+    const res = await axios<any>({
       method: 'POST',
       url: `${API}/user/auth`,
       data: JSON.stringify(data),
@@ -50,6 +50,7 @@ const login = async (data: UserProps) => {
     if (!res.data.success) {
       throw new Error(res.data.message);
     }
+    Logger.info(`api  ${API}`);
     Logger.info(`res  ${JSON.stringify(res.data)}`);
     return res.data;
   } catch (error: any) {

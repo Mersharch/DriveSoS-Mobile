@@ -66,34 +66,26 @@ const HomeView = () => {
   },[]);
 
   return (
-    <View className="flex-1 flex-col justify-center bg-primary-white">
+    <View className=" w-full  px-1 flex-1 flex-col justify-center bg-primary-white">
       <HomeHeader address={currAddress?.address} />
-      <ScrollView className="flex-1 mt-5 space-y-5">
-        <View className="w-full flex-row items-center justify-center">
+      <ScrollView className="w-full flex-1 mt-5 space-y-5">
+        <View className="w-full flex-row items-center justify-center px-1">
           <Hero />
         </View>
-        <View className="flex-col space-y-5 pb-1 px-2">
-          <Text className="font-sans font-bold text-2xl">Our Services</Text>
+        <View className="w-full flex-col space-y-5 pb-1 px-2">
+          <Text className="font-sans font-bold text-black text-xl">What can we help you with today?</Text>
           <FlatList
             data={services}
-            horizontal
+            numColumns={2}
+            keyExtractor={(item) => {
+              return item.id;
+            }}
             renderItem={({item}) => {
               return <ServiceCard item={item} currAddress={currAddress} />;
             }}
           />
         </View>
-        <View className="flex-col space-y-5 pb-1 px-2">
-          <Text className="font-sans font-bold text-2xl">
-            Top Service Providers
-          </Text>
-          <FlatList
-            data={services}
-            horizontal
-            renderItem={({item}) => {
-              return <ServiceCard item={item} currAddress={currAddress} />;
-            }}
-          />
-        </View>
+        
       </ScrollView>
     </View>
   );

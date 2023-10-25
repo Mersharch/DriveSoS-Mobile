@@ -12,6 +12,7 @@ module.exports = {
       },
       textGray: '#8E8E93',
       inputGray: '#E5E5EA',
+      black:'#000000',
 
     },
     fontFamily: {
