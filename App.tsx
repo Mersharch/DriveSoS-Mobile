@@ -1,13 +1,16 @@
-/* eslint-disable react-native/no-inline-styles */
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
 import SplashScreen from 'react-native-splash-screen';
-import React, {useEffect} from 'react';
-import {SafeAreaView, ScrollView, StatusBar, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StatusBar} from 'react-native';
+import SafeAreaProv from './src/components/SafeAreaProv';
+import MainNavigator from './src/Navigation/MainNavigator';
+
+// import FullScreenLoader from './src/components/ui/FullScreenLoader';
+
+// AuthViews
+import LoginView from './src/views/AuthViews/LoginView';
+import SignUpView from './src/views/AuthViews/SignUpView';
+import ForgotPassword from './src/views/AuthViews/ForgotPassword';
+import { AuthProvider } from './src/context/AuthContext';
 
 function App(): JSX.Element {
   useEffect(() => {
@@ -17,14 +20,11 @@ function App(): JSX.Element {
   }, []);
 
   return (
-    <SafeAreaView style={{display: 'flex', flex: 1}}>
-      <StatusBar barStyle={'default'} />
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <View>
-          <Text>aaa</Text>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <>
+      <AuthProvider>
+      <MainNavigator />
+      </AuthProvider>
+    </>
   );
 }
 
